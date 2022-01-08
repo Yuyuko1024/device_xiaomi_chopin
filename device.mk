@@ -39,6 +39,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/config/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PLATFORM_VNDK_VERSION)/etc/audio_policy_configuration.xml
 
+# A/B
+AB_OTA_UPDATER := false
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
