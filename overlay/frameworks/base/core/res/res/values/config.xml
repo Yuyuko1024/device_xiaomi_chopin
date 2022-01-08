@@ -302,6 +302,12 @@
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
      <integer name="config_shutdownBatteryTemperature">680</integer>
 
+     <!-- The default peak refresh rate for a given device. -->
+    <integer name="config_defaultPeakRefreshRate">120</integer>
+
+    <!-- Preferred refresh rate at keyguard, if supported by the display -->
+    <integer name="config_keyguardRefreshRate">120</integer>
+
     <!-- Regex of wired ethernet ifaces -->
      <string name="config_ethernet_iface_regex">eth\\d</string>
 
