@@ -58,6 +58,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_AAPT_CONFIG := xxxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service.chopin
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
