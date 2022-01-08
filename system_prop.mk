@@ -8,3 +8,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1
+
+# Privapp permissions whitelisting
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.control_privapp_permissions=log
