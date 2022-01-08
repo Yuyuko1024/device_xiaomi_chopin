@@ -40,7 +40,17 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/config/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PLATFORM_VNDK_VERSION)/etc/audio_policy_configuration.xml
 
 # A/B
-AB_OTA_UPDATER := false
+AB_OTA_UPDATER := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    product \
+    system \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vendor
 
 # fastbootd
 PRODUCT_PACKAGES += \
