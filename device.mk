@@ -32,6 +32,13 @@ PRODUCT_BUILD_SUPER_PARTITION := false
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default
+
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/config/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PLATFORM_VNDK_VERSION)/etc/audio_policy_configuration.xml
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
