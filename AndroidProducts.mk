@@ -16,9 +16,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_chopin.mk
+    $(LOCAL_DIR)/exthm_chopin.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_chopin-user \
-    lineage_chopin-userdebug \
-    lineage_chopin-eng
+    exthm_chopin-user \
+    exthm_chopin-userdebug \
+    exthm_chopin-eng

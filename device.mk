@@ -24,9 +24,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+$(call inherit-product-if-exists, vendor/xiaomi/chopin/chopin-vendor.mk)
+
 # Dynamic Partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
+
+# DTB
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
@@ -47,7 +53,6 @@ AB_OTA_PARTITIONS += \
     dtbo \
     product \
     system \
-    system_ext \
     vbmeta \
     vbmeta_system \
     vendor
