@@ -24,6 +24,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+# Setup dalvik vm configs
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
 $(call inherit-product-if-exists, vendor/xiaomi/chopin/chopin-vendor.mk)
 
 # Dynamic Partition
@@ -42,20 +46,61 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     audio.a2dp.default
 
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/config/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PLATFORM_VNDK_VERSION)/etc/audio_policy_configuration.xml
+# AVB
+PRODUCT_PACKAGES += \
+    q-gsi.avbpubkey \
+    r-gsi.avbpubkey \
+    s-gsi.avbpubkey
 
 # A/B
+ENABLE_VIRTUAL_AB := true
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
+    odm \
     product \
     system \
+    system_ext \
     vbmeta \
     vbmeta_system \
     vendor
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=ext4 \
+    POSTINSTALL_OPTIONAL_vendor=true
+
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-service
+
+PRODUCT_PACKAGES := \
+    bootctrl.mt6893 \
+    libgptutils \
+    libz \
+    libcutils
+
+PRODUCT_PACKAGES += \
+    otapreopt_script \
+    checkpoint_gc \
+    cppreopts.sh \
+    update_engine \
+    update_verifier \
+    update_engine_sideload
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -63,6 +108,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891
+
+# Heath hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-service \
+    android.hardware.health@2.1-impl
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -74,13 +124,14 @@ PRODUCT_PACKAGES += \
     init.mt6891.rc \
 	fstab.mt6891
 
+# Additional target Libraries
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libkeymaster4 \
+    libpuresoftkeymasterdevice
+
 # Screen density
 PRODUCT_AAPT_CONFIG := xxxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
-
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.chopin
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \

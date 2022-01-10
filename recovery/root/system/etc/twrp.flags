@@ -1,0 +1,31 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# Currently we dont have e2fsck compiled. So fs check would failed.
+#
+# mount point       fstype    device                                          flags
+/cache              ext4      /dev/block/by-name/rescue                       flags=display="Cache";wipeingui;
+/protect_f          ext4      /dev/block/by-name/protect1                     flags=display="Protect_f";backup=1;
+/protect_s          ext4      /dev/block/by-name/protect2                     flags=display="Protect_S";backup=1;
+/nvdata             ext4      /dev/block/by-name/nvdata                       flags=display="nvdata";backup=1;
+/nvcfg              ext4      /dev/block/by-name/nvcfg                        flags=display="nvcfg";backup=1;
+/persist            ext4      /dev/block/by-name/persist                      flags=display="Persist";backup=1;
+/boot               emmc      /dev/block/by-name/boot                         flags=display="boot";flashimg=1;
+/persistent         emmc      /dev/block/by-name/frp                         
+/nvram              emmc      /dev/block/by-name/nvram                        flags=display="nvram";backup=1;flashimg=1;
+/logo               emmc      /dev/block/by-name/logo                                              
+/expdb              emmc      /dev/block/by-name/expdb                                       
+/seccfg             emmc      /dev/block/by-name/seccfg                                       
+/tee1               emmc      /dev/block/by-name/tee1                                      
+/tee2               emmc      /dev/block/by-name/tee2                                       
+/spmfw              emmc      /dev/block/by-name/spmfw
+/pi_img             emmc      /dev/block/by-name/pi_img
+/dtbo               emmc      /dev/block/by-name/dtbo                         flags=display="Dtbo";
+/otp                emmc      /dev/block/by-name/otp
+
+/vbmeta             emmc      /dev/block/by-name/vbmeta                       flags=display="Vbmeta";
+/cust               ext4      /dev/block/platform/bootdevice/by-name/cust
+
+# removable
+/usb-otg            vfat     /dev/block/sdd1                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8
