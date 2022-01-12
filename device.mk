@@ -141,6 +141,18 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/config/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
 
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.recovery.usb.rc \
+    ueventd.mtk.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/bin/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc \
+    $(LOCAL_PATH)/rootdir/bin/init.recovery.mt6893.rc:recovery/root/init.recovery.mt6893.rc
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root/,$(TARGET_COPY_OUT_RAMDISK))
+
 # RcsService
 PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager \
