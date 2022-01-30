@@ -1,0 +1,9 @@
+/vendor/lib/modules/bt_drv.ko: /vendor/lib/modules/conninfra.ko
+/vendor/lib/modules/fpsgo.ko:
+/vendor/lib/modules/met.ko:
+/vendor/lib/modules/wlan_drv_gen4m.ko: /vendor/lib/modules/wmt_chrdev_wifi.ko /vendor/lib/modules/conninfra.ko
+/vendor/lib/modules/gps_drv.ko: /vendor/lib/modules/conninfra.ko
+/vendor/lib/modules/kheaders.ko:
+/vendor/lib/modules/conninfra.ko:
+/vendor/lib/modules/sla.ko:
+/vendor/lib/modules/wmt_chrdev_wifi.ko: /vendor/lib/modules/conninfra.ko

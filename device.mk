@@ -102,12 +102,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+# Common init scripts
+PRODUCT_PACKAGES += \
+    fstab.mt6891 \
+    fstab.emmc \
+    init.recovery.mt6891.rc
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891
 
 # Heath hal
 PRODUCT_PACKAGES += \
@@ -118,11 +121,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libhidltransport \
     libhwbinder
-
-# Init
-PRODUCT_PACKAGES += \
-    init.mt6891.rc \
-	fstab.mt6891
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
@@ -140,18 +138,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 # Permissions
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/config/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
-
-# Rootdir
-PRODUCT_PACKAGES += \
-    init.recovery.usb.rc \
-    ueventd.mtk.rc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/bin/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc \
-    $(LOCAL_PATH)/rootdir/bin/init.recovery.mt6893.rc:recovery/root/init.recovery.mt6893.rc
-
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root/,$(TARGET_COPY_OUT_RAMDISK))
 
 # RcsService
 PRODUCT_PACKAGES += \
