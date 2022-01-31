@@ -53,8 +53,8 @@ PRODUCT_PACKAGES += \
     s-gsi.avbpubkey
 
 # A/B
-ENABLE_VIRTUAL_AB := true
 AB_OTA_UPDATER := true
+PRODUCT_VIRTUAL_AB_OTA := true
 
 AB_OTA_PARTITIONS += \
     boot \
@@ -85,6 +85,9 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl.recovery \
     android.hardware.boot@1.1-service
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/lib64/android.hardware.boot@1.0-impl-1.1-mtkimpl.so:recovery/root/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so
+
 PRODUCT_PACKAGES := \
     bootctrl.mt6893 \
     libgptutils \
@@ -104,23 +107,28 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Common init scripts
 PRODUCT_PACKAGES += \
-    fstab.mt6891 \
-    fstab.emmc \
     init.recovery.mt6891.rc
 
 # fastbootd
 PRODUCT_PACKAGES += \
-    fastbootd
+    fastbootd \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/lib64/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
 
 # Heath hal
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service \
-    android.hardware.health@2.1-impl
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-impl.recovery
 
 # HIDL
 PRODUCT_PACKAGES += \
     libhidltransport \
-    libhwbinder
+    libhwbinder \
+    libhardware
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
