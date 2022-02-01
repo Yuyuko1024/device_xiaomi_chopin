@@ -46,12 +46,6 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     audio.a2dp.default
 
-# AVB
-PRODUCT_PACKAGES += \
-    q-gsi.avbpubkey \
-    r-gsi.avbpubkey \
-    s-gsi.avbpubkey
-
 # A/B
 AB_OTA_UPDATER := true
 PRODUCT_VIRTUAL_AB_OTA := true
