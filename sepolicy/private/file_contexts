@@ -1,0 +1,2 @@
+# VoLTE
+/system/bin/vtservice           u:object_r:vtservice_exec:s0

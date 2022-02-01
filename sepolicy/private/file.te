@@ -1,0 +1,11 @@
+# Nodes
+type sysfs_fod, sysfs_type, fs_type;
+type sysfs_fingerprint_notify, sysfs_type, fs_type;
+type proc_cpufreq, fs_type, proc_type;
+type proc_gpufreq, fs_type, proc_type;
+type proc_ppm, fs_type, proc_type;
+type sysfs_ged, sysfs_type, fs_type;
+type sysfs_battery_supply, sysfs_type, fs_type;
+type proc_tristatekey, fs_type, proc_type;
+type proc_tp, fs_type, proc_type;
+

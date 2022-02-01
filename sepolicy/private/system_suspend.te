@@ -1,0 +1,5 @@
+allow system_suspend block_device:dir { search };
+allow system_suspend sysfs:dir { read open write getattr setattr };
+allow system_suspend sysfs_battery_supply:dir { read open write getattr setattr };
+allow system_suspend sysfs:file { read open write getattr setattr };
+allow system_suspend sysfs_battery_supply:file { read open write getattr setattr };

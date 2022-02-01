@@ -1,0 +1,16 @@
+# Allow system_app to set perf_profile prop
+set_prop(system_app, perf_prop)
+
+allow system_app proc_tp:dir search;
+allow system_app proc_tp:file rw_file_perms;
+
+# Allow system_app to set cabc props
+set_prop(system_app, cabc_prop)
+
+# Address some RealmeParts Denials
+allow system_app apk_data_file:dir { write };
+allow system_app default_prop:property_service { set };
+allow system_app sysfs_disp_hbm:file { read open write getattr };
+allow system_app sysfs_fod:file { read open write getattr };
+allow system_app sysfs_graphics_ffl:file { read open write getattr };
+allow system_app sysfs_zram:file { open };

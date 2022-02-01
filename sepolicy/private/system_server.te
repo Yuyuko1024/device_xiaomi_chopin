@@ -1,0 +1,6 @@
+# Allow system_server for smart charging and usb nodes
+allow system_server sysfs_battery_supply:file { getattr open write };
+allow system_server app_zygote:process { getpgid };
+allow system_server default_android_hwservice:hwservice_manager { find };
+
+get_prop(system_server, vendor_camera_prop)
