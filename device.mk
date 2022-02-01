@@ -129,7 +129,12 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(DEVICE_PATH)/overlay
+    $(DEVICE_PATH)/overlay \
+
+PRODUCT_PACKAGES += \
+    FrameworkResOverlay \
+    SettingsOverlay \
+    TelephonyOverlay
 
 # Permissions
 PRODUCT_COPY_FILES += \

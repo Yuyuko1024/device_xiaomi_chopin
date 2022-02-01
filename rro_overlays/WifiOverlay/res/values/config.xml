@@ -22,23 +22,25 @@
          Note: This config is replacing the config_wifi_dual_band_support
          since more bands may now be supported (such as 6GHz), the naming dual_band
          is no longer indicative, and a separate config now exists for each band -->
-    <bool name="config_wifi5ghzSupport">true</bool>
-    <bool name="config_wifiSoftapIeee80211axSupported">true</bool>
-    <bool name="config_wifi_background_scan_support">true</bool>
-    <bool name="config_wifi_connected_mac_randomization_supported">true</bool>
-    <bool name="config_wifi_fast_bss_transition_enabled">true</bool>
-    <bool name="config_wifi_p2p_mac_randomization_supported">true</bool>
-    <bool name="config_wifi_softap_acs_supported">true</bool>
-    <bool name="config_wifi_softap_ieee80211ac_supported">true</bool>
-    <bool name="config_wifi_softap_sae_supported">false</bool>
+    <bool translatable="false" name="config_wifi5ghzSupport">true</bool>
+	
+	<!-- For Dual SoftaAp -->
+    <bool name="config_wifi_dual_sap_mode_enabled">true</bool>
+
+    <!-- Wifi driver supports 6GHz band for softap -->
+    <bool name="config_wifiSoftap6ghzSupported">true</bool>
+
+    <!-- Boolean indicating whether the wifi chipset has background scan support -->
+    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
-    <string name="config_wifi_tcp_buffers" translatable="false">524288,1048576,8808040,262144,524288,6710886</string>
-
-    <string name="config_wifi_random_mac_oui">00-0C-E7</string>
+    <string name="config_wifi_tcp_buffers" translatable="false">524288,1048576,4194304,262144,524288,3670016</string>
 
     <!-- Integer parameters of the wifi to cellular handover feature
          wifi should not stick to bad networks -->
-    <integer name="config_wifiDelayDisconnectOnImsLostMs">1000</integer>
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_24GHz">-85</integer>
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_5GHz">-82</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_24GHz">-73</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_5GHz">-70</integer>
 </resources>
