@@ -77,29 +77,19 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl \
     android.hardware.boot@1.1-impl.recovery \
-    android.hardware.boot@1.1-service
+    bootctrl.mt6893.recovery
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-service \
+    bootctrl.mt6893 \
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/lib64/android.hardware.boot@1.0-impl-1.1-mtkimpl.so:recovery/root/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so
-
-PRODUCT_PACKAGES := \
-    bootctrl.mt6893 \
-    libgptutils \
-    libz \
-    libcutils
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    checkpoint_gc \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
 
 # Common init scripts
 PRODUCT_PACKAGES += \
@@ -157,6 +147,15 @@ PRODUCT_SOONG_NAMESPACES += \
 # system prop
 -include $(DEVICE_PATH)/system_prop.mk
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+# Update engine
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_sideload \
+    update_verifier
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 # Wi-Fi
 PRODUCT_PACKAGES += \

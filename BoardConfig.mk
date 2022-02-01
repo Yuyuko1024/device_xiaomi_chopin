@@ -37,7 +37,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 # Audio
 USE_XML_AUDIO_POLICY_CONF := 1
 
-# ASSERT
+# Assertation
 TARGET_OTA_ASSERT_DEVICE := chopin,chopinin
 
 # Android Verified Boot
