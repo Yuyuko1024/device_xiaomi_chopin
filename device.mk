@@ -107,6 +107,8 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Common init scripts
 PRODUCT_PACKAGES += \
+    fstab.mt6891 \
+    fstab.emmc \
     init.recovery.mt6891.rc
 
 # fastbootd
@@ -163,4 +165,4 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 # Wi-Fi
 PRODUCT_PACKAGES += \
     TetheringConfigOverlay \
-	WifiOverlay
+    WifiOverlay
