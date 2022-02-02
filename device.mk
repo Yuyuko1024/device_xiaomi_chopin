@@ -36,6 +36,8 @@ $(call inherit-product-if-exists, vendor/mediatek/ims/mtk-ims.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
+
 # DTB
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
@@ -49,19 +51,7 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default
 
 # A/B
-AB_OTA_UPDATER := true
 PRODUCT_VIRTUAL_AB_OTA := true
-
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    odm \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -69,11 +59,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=ext4 \
-    POSTINSTALL_OPTIONAL_vendor=true
+PRODUCT_PACKAGES += \
+    otapreopt_script
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
@@ -83,7 +70,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl \
     android.hardware.boot@1.1-service \
-    bootctrl.mt6893 \
+    bootctrl.mt6893
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
@@ -96,12 +83,6 @@ PRODUCT_PACKAGES += \
     mtk_plpath_utils \
     mtk_plpath_utils.recovery
 
-# Common init scripts
-PRODUCT_PACKAGES += \
-    fstab.mt6891 \
-    fstab.emmc \
-    init.recovery.mt6891.rc
-
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd \
@@ -110,6 +91,16 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/lib64/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
+
+# F2FS
+PRODUCT_PACKAGES += \
+    sg_write_buffer \
+    f2fs_io \
+    check_f2fs
+
+# Fingerprint
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.fingerprint.xml
 
 # Heath hal
 PRODUCT_PACKAGES += \
@@ -121,25 +112,58 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libhidltransport \
     libhwbinder \
-    libhardware
+    libhardware \
+    libhardware.recovery
+
+# Init
+PRODUCT_PACKAGES += \
+    init.mt6891.rc \
+    fstab.emmc \
+    fstab.mt6891
+
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891
+
+# Copy the kernel from the prebuilts directory.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/kernel.gz:kernel
+
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
+    $(LOCAL_PATH)/config/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl \
+    $(LOCAL_PATH)/config/keylayout/mtk-kpd.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/mtk-kpd.kl
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
     libpuresoftkeymasterdevice
 
-# Screen density
-PRODUCT_AAPT_CONFIG := xxxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
+# NFC
+PRODUCT_PACKAGES += \
+    NfcNci \
+    com.android.nfc_extras \
+    com.gsma.services.nfc \
+    com.nxp.nfc.nq \
+    libnqnfc_nci_jni \
+    nfc_nci.nqx.default.hw \
+    NQNfcNci \
+    nqnfcee_access.xml \
+    nqnfcse_access.xml \
+    Tag \
+    SecureElement \
+    vendor.nxp.hardware.nfc@1.1-service
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(DEVICE_PATH)/overlay \
+    $(DEVICE_PATH)/overlay
 
 PRODUCT_PACKAGES += \
     FrameworkResOverlay \
     SettingsOverlay \
     TelephonyOverlay
+
+PRODUCT_ENFORCE_RRO_TARGETS := *
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -148,7 +172,21 @@ PRODUCT_COPY_FILES += \
 # RcsService
 PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager \
+    RcsService \
     PresencePolling
+
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.recovery.mt6891.rc \
+    init.recovery.usb.rc \
+    ueventd.mtk.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc
+
+# Screen density
+PRODUCT_AAPT_CONFIG := xxxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \

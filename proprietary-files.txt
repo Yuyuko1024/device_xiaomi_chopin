@@ -5,6 +5,10 @@ etc/apns-conf.xml:product/etc/apns-conf.xml
 lib64/libaptX_encoder.so
 lib64/libaptXHD_encoder.so
 
+# Bootctrl
+lib64/android.hardware.boot@1.0.so
+lib64/android.hardware.boot@1.1.so
+
 # IMS
 -framework/mediatek-framework.jar
 -framework/mediatek-ims-common.jar

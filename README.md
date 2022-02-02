@@ -17,4 +17,4 @@ It was released in May 2021.
 | Camera (Back)(Main)     | 64 MP, f/1.8, 26mm (wide), 1/1.97", 0.7µm, PDAF                                                                                |
 | Camera (Front)          | 16 MP, f/2.5, (wide), 1/3.06", 1.0µm                                                                                           |
 
-![chopin](https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-10-pro-china-new.jpg)
+![Redmi Note 10 Pro/POCO X3 GT](https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1621955784.84614979.jpg "Redmi Note 10 Pro/POCO X3 GT")
