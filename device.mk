@@ -278,6 +278,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
 
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.lights-service.chopin
+
 # Media Codec2 modules
 PRODUCT_PACKAGES += \
     com.android.media.swcodec \
@@ -388,7 +392,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
-    
+
 # Shims
 PRODUCT_PACKAGES += \
     libshim_vtservice
