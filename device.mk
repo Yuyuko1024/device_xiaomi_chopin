@@ -315,15 +315,9 @@ PRODUCT_PACKAGES += \
     ImsInit
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(DEVICE_PATH)/overlay
-
 PRODUCT_PACKAGES += \
-    FrameworkResOverlay \
-    SettingsOverlay \
-    TelephonyOverlay \
-    TetheringConfigOverlay \
-    WifiOverlay
+    FrameworkResOverlayChopin \
+    WifiResOverlayChopin
 
 # Overlays - override vendor ones
 PRODUCT_PACKAGES += \
