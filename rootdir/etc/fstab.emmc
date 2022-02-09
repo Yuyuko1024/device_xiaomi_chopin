@@ -1,27 +1,32 @@
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.emmc"
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.mt6893"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 341 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.emmc" 2
-# 148 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.emmc"
-system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.mt6893" 2
+# 148 "vendor/mediatek/proprietary/hardware/fstab/mt6893/fstab.in.mt6893"
+system /system ext4 ro wait,slotselect,logical,first_stage_mount
 
-vendor /vendor ext4 ro wait,slotselect,avb,logical,first_stage_mount
-
-
-product /product ext4 ro wait,slotselect,avb,logical,first_stage_mount
+vendor /vendor ext4 ro wait,slotselect,logical,first_stage_mount
 
 
-odm /odm ext4 ro wait,slotselect,avb,logical,first_stage_mount
+product /product ext4 ro wait,slotselect,logical,first_stage_mount
+
+
+system_ext /system_ext ext4 ro wait,logical,first_stage_mount,slotselect
+
+
+odm /odm ext4 ro wait,slotselect,logical,first_stage_mount
 
 
 /dev/block/by-name/metadata /metadata ext4 noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
 
-/dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,fsverity
+/dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
 
 
+
+/dev/block/by-name/rescue /cache ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,formattable
 
 /dev/block/by-name/protect1 /mnt/vendor/protect_f ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/by-name/protect2 /mnt/vendor/protect_s ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
@@ -54,7 +59,7 @@ odm /odm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 
 /dev/block/by-name/vbmeta_vendor /vbmeta_vendor emmc defaults first_stage_mount,nofail,slotselect
-/dev/block/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,slotselect,avb=vbmeta
+/dev/block/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,slotselect
 
 /dev/block/by-name/logo /logo emmc defaults defaults
 /dev/block/by-name/expdb /expdb emmc defaults defaults

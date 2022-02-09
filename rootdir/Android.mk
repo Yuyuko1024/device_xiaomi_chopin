@@ -21,23 +21,15 @@ LOCAL_MODULE       := init.recovery.mt6891.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/init.recovery.mt6891.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := fstab.mt6891
+LOCAL_MODULE       := init.recovery.mt6893.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := etc/fstab.mt6891
-LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)/first_stage_ramdisk
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := fstab.emmc
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := etc/fstab.emmc
-LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)/first_stage_ramdisk
+LOCAL_SRC_FILES    := etc/init.recovery.mt6893.rc
+LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -53,14 +45,5 @@ LOCAL_MODULE       := init.recovery.usb.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/init.recovery.usb.rc
-LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR_EXECUTABLES)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := ueventd.mtk.rc
-LOCAL_MODULE_STEM  := ueventd.rc
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := etc/ueventd.mtk.rc
-LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
+LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
 include $(BUILD_PREBUILT)

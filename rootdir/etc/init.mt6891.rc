@@ -1,7 +1,11 @@
 on init
+    # Disable vendor overlay
     mount none /vendor/lost+found /vendor/overlay bind
-    setprop sys.usb.ffs.aio_compat 1
+    # Mount kernel modules
+    mount none /system/lib/modules /vendor/lib/modules bind
 
-on post-fs-data
-    # Services
-    setprop init.svc.console stopped
+on boot
+    stop console
+
+    chmod 0664 /sys/class/leds/lcd-backlight/max_brightness
+    chown system system /sys/class/leds/lcd-backlight/max_brightness
