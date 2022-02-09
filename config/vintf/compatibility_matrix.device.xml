@@ -9,6 +9,8 @@
         vendor_framework_compatibility_matrix.xml
         dax_framework_compatibility_matrix.xml
         device_framework_matrix.xml
+        compatibility_matrix.xml
+        wechat_compatibility_matrix.xml
         vendor_framework_compatibility_matrix.xml
         vendor_framework_compatibility_matrix.xml
         vendor_framework_compatibility_matrix.xml
@@ -17,7 +19,6 @@
         compatibility_matrix_vendor.xiaomi.hardware.mfidoca.xml
         compatibility_matrix_vendor.xiaomi.hardware.mlipay.xml
         compatibility_matrix_vendor.xiaomi.hardware.mtdservice.xml
-        compatibility_matrix_vendor.xiaomi.hardware.soterservice.xml
         compatibility_matrix_vendor.xiaomi.hardware.tidaservice.xml
         compatibility_matrix_vendor.xiaomi.hardware.vsimapp.xml
         vendor_framework_compatibility_matrix.xml
@@ -568,6 +569,22 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.microtrust.hardware.soter</name>
+        <version>1.0</version>
+        <interface>
+            <name>ISoter</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.microtrust.hardware.thh</name>
+        <version>2.0</version>
+        <interface>
+            <name>IThhDevice</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.microtrust.hardware.thh</name>
         <version>2.0</version>
         <interface>
@@ -692,14 +709,6 @@
         <version>1.0-2</version>
         <interface>
             <name>IMTService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.xiaomi.hardware.soterservice</name>
-        <version>1.0</version>
-        <interface>
-            <name>ISoter</name>
             <instance>default</instance>
         </interface>
     </hal>
