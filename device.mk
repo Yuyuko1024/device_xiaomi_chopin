@@ -48,7 +48,8 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default
+    audio.a2dp.default \
+    libaacwrapper
 
 # A/B
 PRODUCT_VIRTUAL_AB_OTA := true
@@ -65,11 +66,9 @@ PRODUCT_PACKAGES += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl.recovery \
-    bootctrl.mt6893.recovery
-
-PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl \
     android.hardware.boot@1.1-service \
+    bootctrl.mt6893.recovery \
     bootctrl.mt6893
 
 PRODUCT_PACKAGES_DEBUG += \
@@ -92,6 +91,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/lib64/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
 
+# Exclude sensor from InputManager
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/sensor/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
+
+# First stage ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:$(TARGET_COPY_OUT_RAMDISK)/fstab.emmc \
+    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891 \
+    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6891 \
+    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.emmc 
+
 # F2FS
 PRODUCT_PACKAGES += \
     sg_write_buffer \
@@ -110,16 +120,14 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0 \
     libhidltransport \
     libhwbinder \
     libhardware \
-    libhardware.recovery
-
-# Init
-PRODUCT_PACKAGES += \
-    init.mt6891.rc \
-    fstab.emmc \
-    fstab.mt6891
+    libhardware.recovery \
+    libhardware_legacy \
+    libhardware_legacy.recovery
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891
@@ -179,7 +187,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
     init.recovery.usb.rc \
-    ueventd.mtk.rc
+    ueventd.mtk.rc \
+    init.mt6891.rc \
+    fstab.emmc \
+    fstab.mt6891
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc
