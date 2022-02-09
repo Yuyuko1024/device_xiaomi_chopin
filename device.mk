@@ -388,6 +388,10 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
+    
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_vtservice
 
 # Properties
 include $(LOCAL_PATH)/config/prop/default.mk
