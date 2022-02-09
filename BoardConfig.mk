@@ -130,6 +130,7 @@ TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # Metadata
+BOARD_ROOT_EXTRA_FOLDERS += metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions size
