@@ -182,6 +182,8 @@ $(foreach p, $(BOARD_PARTITION_LIST), $(eval TARGET_COPY_OUT_$(p) := $(call to-l
 
 # Properties
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/config/prop/product.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/config/prop/system.prop
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
