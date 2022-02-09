@@ -15,6 +15,7 @@
 #
 
 DEVICE_PATH := device/xiaomi/chopin
+CHOPIN_PREBUILT := device/xiaomi/chopin-prebuilts
 
 # Installs gsi keys into ramdisk, to boot a GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
@@ -30,7 +31,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 # Call proprietary blob setup
 $(call inherit-product-if-exists, vendor/xiaomi/chopin/chopin-vendor.mk)
-$(call inherit-product-if-exists, vendor/mediatek/ims/mtk-ims.mk)
 
 # Dynamic Partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -119,7 +119,7 @@ PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/lib64/android.hardware.boot@1.0-impl-1.1-mtkimpl.so:recovery/root/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so
+   $(CHOPIN_PREBUILT)/recovery/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so:recovery/root/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so
 
 # Build MT-PL-Utils
 PRODUCT_PACKAGES += \
@@ -158,7 +158,7 @@ PRODUCT_PACKAGES += \
 
 # DTB
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/dtb.img:dtb.img
+    $(CHOPIN_PREBUILT)/base/dtb.img:dtb.img
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -180,7 +180,7 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock.recovery
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/lib64/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
+    $(CHOPIN_PREBUILT)/recovery/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
 
 # Exclude sensor from InputManager
 PRODUCT_COPY_FILES += \
@@ -252,7 +252,7 @@ PRODUCT_PACKAGES += \
 
 # Copy the kernel from the prebuilts directory.
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/Image.gz:Image.gz
+    $(CHOPIN_PREBUILT)/base/Image.gz:Image.gz
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -299,34 +299,28 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     NfcNci \
     com.android.nfc_extras \
-    com.gsma.services.nfc \
-    com.nxp.nfc.nq \
-    libnqnfc_nci_jni \
-    nfc_nci.nqx.default.hw \
-    NQNfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
     Tag \
     SecureElement \
-    vendor.nxp.hardware.nfc@1.1-service
 
 # ImsInit hack
 PRODUCT_PACKAGES += \
     ImsInit
 
 # Overlays
-PRODUCT_PACKAGES += \
-    FrameworkResOverlayChopin \
-    WifiResOverlayChopin
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-lineage
 
 # Overlays - override vendor ones
 PRODUCT_PACKAGES += \
     FrameworksResCommon \
     FrameworksResTarget \
     DevicesOverlay \
-    DevicesAndroidOverlay
+    DevicesAndroidOverlay \
+    WifiResOverlayChopin
 
-PRODUCT_ENFORCE_RRO_TARGETS := *
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -419,6 +413,9 @@ PRODUCT_PACKAGES_DEBUG += \
 # Vibrator
 PRODUCT_PACKAGES += \
      android.hardware.vibrator-V1-ndk_platform.vendor
+
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 30
 
 # Wi-Fi
 PRODUCT_PACKAGES += \

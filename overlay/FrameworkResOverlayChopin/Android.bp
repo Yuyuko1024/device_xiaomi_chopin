@@ -1,7 +1,0 @@
-runtime_resource_overlay {
-    name: "FrameworkResOverlayChopin",
-    theme: "FrameworkResOverlayChopin",
-    certificate: "platform",
-    sdk_version: "current",
-    product_specific: true
-}
