@@ -43,6 +43,7 @@ system_ext/lib64/vendor.xiaomi.hardware.fx.tunnel@1.0.so
 -framework/mediatek-telephony-base.jar
 -framework/mediatek-telephony-common.jar
 -priv-app/ImsService/ImsService.apk
+-priv-app/EngineerMode/EngineerMode.apk
 bin/vtservice
 etc/init/init.vtservice.rc
 etc/permissions/privapp-permissions-mediatek.xml
