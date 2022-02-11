@@ -408,4 +408,8 @@
           rates are available from hardware composer. Only has an effect if the value is
           non-zero. -->
      <integer name="config_defaultPeakRefreshRate">120</integer>
+
+     <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
+         on the headphone/microphone jack. When false use the older uevent framework. -->
+    <bool name="config_useDevInputEventForAudioJack">true</bool>
 </resources>
