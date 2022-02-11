@@ -35,8 +35,8 @@ PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 # Build info
-BUILD_FINGERPRINT := redmi/chopin/chopin:11/RP1A.200720.011/V12.5.6.0.RKPCNXM:user/release-keys
+BUILD_FINGERPRINT := redmi/chopin/chopin:11/RP1A.200720.011/V12.5.16.0.RKPCNXM:user/release-keys
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=chopin \
     PRODUCT_NAME=chopin \
-	PRIVATE_BUILD_DESC="chopin-user 11 RP1A.200720.011 V12.5.6.0.RKPCNXM release-keys"
+	PRIVATE_BUILD_DESC="chopin-user 11 RP1A.200720.011 V12.5.16.0.RKPCNXM release-keys"
