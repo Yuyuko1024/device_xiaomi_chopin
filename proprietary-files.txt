@@ -50,6 +50,10 @@ etc/permissions/privapp-permissions-mediatek.xml
 -framework/mediatek-ims-extension-plugin.jar
 -framework/mediatek-ims-legacy.jar
 lib/libcomutils.so
+lib/libem_audio_jni.so
+lib/libem_support_jni.so
+lib/libem_usb_jni.so
+lib/libem_wifi_jni.so
 lib/libimsma.so
 lib/libimsma_adapt.so
 lib/libimsma_rtp.so
@@ -65,6 +69,10 @@ lib/libvcodec_cap.so
 lib/libvcodec_capenc.so
 lib/libvt_avsync.so
 system_ext/lib/vendor.mediatek.hardware.videotelephony@1.0.so
+lib64/libem_audio_jni.so
+lib64/libem_support_jni.so
+lib64/libem_usb_jni.so
+lib64/libem_wifi_jni.so
 lib64/libmtk_vt_wrapper.so
 lib64/libmtkavenhancements.so
 lib64/libmtkperf_client.so
