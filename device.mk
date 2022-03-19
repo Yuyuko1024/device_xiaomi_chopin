@@ -78,10 +78,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
-# DTB
-PRODUCT_COPY_FILES += \
-    $(CHOPIN_PREBUILT)/base/dtb.img:dtb.img
-
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd \
@@ -131,8 +127,15 @@ PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-service
 
 # Copy the kernel from the prebuilts directory.
-PRODUCT_COPY_FILES += \
-    $(CHOPIN_PREBUILT)/base/Image.gz:Image.gz
+ifneq ($(IS_GLOBAL),true)
+    PRODUCT_COPY_FILES += \
+        $(CHOPIN_PREBUILT)/base/China/dtb.img:dtb.img \
+        $(CHOPIN_PREBUILT)/base/China/Image.gz:Image.gz
+else
+    PRODUCT_COPY_FILES += \
+        $(CHOPIN_PREBUILT)/base/Global/dtb.img:dtb.img \
+        $(CHOPIN_PREBUILT)/base/Global/Image.gz:Image.gz
+endif
 
 # Keylayout
 PRODUCT_COPY_FILES += \
