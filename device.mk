@@ -23,9 +23,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-PRODUCT_SHIPPING_API_LEVEL := 30
-
 # VNDK
+PRODUCT_SHIPPING_API_LEVEL := 30
 PRODUCT_TARGET_VNDK_VERSION := 30
 
 # Setup dalvik vm configs
@@ -47,47 +46,8 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@6.0.vendor  \
-    android.hardware.audio.common@6.0-util \
-    android.hardware.audio.service \
-    android.hardware.audio@6.0-impl \
-    android.hardware.audio.effect@6.0-impl \
-    android.hardware.soundtrigger@2.2-impl \
     audio.a2dp.default \
-    audio.bluetooth.default \
-    audio.r_submix.default \
-    audio.usb.default \
-    audio_policy.stub \
-    libaudiopreprocessing \
-    libbundlewrapper \
-    libdownmix \
-    libdynproc \
-    libeffectproxy \
-    libldnhncr \
-    libreverbwrapper \
-    libvisualizer \
-    libtinycompress \
-    libaudiofoundation.vendor \
-    libtinycompress.vendor
-
-PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/audio_policy_configuration_bluetooth_legacy_hal.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_configuration_bluetooth_legacy_hal.xml \
-    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_volumes.xml \
-    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/a2dp_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/a2dp_in_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/audio_policy_configuration_stub.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_configuration_stub.xml \
-    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/bluetooth_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/usb_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/hearing_aid_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/r_submix_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default_volume_tables.xml
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/config/audio/audio_policy_engine_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_engine_configuration.xml \
-    $(LOCAL_PATH)/config/audio/audio_policy_engine_default_stream_volumes.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_engine_default_stream_volumes.xml \
-    $(LOCAL_PATH)/config/audio/audio_policy_engine_product_strategies.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_engine_product_strategies.xml \
-    $(LOCAL_PATH)/config/audio/audio_policy_engine_stream_volumes.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_engine_stream_volumes.xml
+    libaacwrapper
 
 # A/B
 PRODUCT_VIRTUAL_AB_OTA := true
@@ -101,30 +61,13 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_PACKAGES += \
     otapreopt_script
 
-# Audio Shim
-PRODUCT_PACKAGES += \
-    libshim_audio
-
-# Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0.vendor \
-    android.hardware.bluetooth@1.1.vendor \
-    android.hardware.bluetooth.a2dp@1.0-impl \
-    android.hardware.bluetooth.audio@2.0-impl
-
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl.recovery \
-    android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-service \
-    bootctrl.mt6893.recovery \
-    bootctrl.mt6893
+    android.hardware.boot@1.1-mtkimpl.recovery \
+    android.hardware.boot@1.1-mtkimpl
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
-
-PRODUCT_COPY_FILES += \
-   $(CHOPIN_PREBUILT)/recovery/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so:recovery/root/system/lib64/hw/android.hardware.boot@1.0-impl-1.1-mtkimpl.so
 
 # Build MT-PL-Utils
 PRODUCT_PACKAGES += \
@@ -133,50 +76,11 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap \
-    android.hardware.camera.device@3.3.vendor \
-    android.hardware.camera.device@3.4.vendor \
-    android.hardware.camera.device@3.5.vendor \
-    android.hardware.camera.device@3.6.vendor \
-    android.hardware.camera.provider@2.4.vendor \
-    android.hardware.camera.provider@2.5.vendor \
-    android.hardware.camera.provider@2.6.vendor
-
-# Display
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.4-service \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service \
-    libdrm.vendor \
-    libvulkan
-
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.4-resources.vendor \
-    android.hidl.allocator@1.0.vendor \
-    android.hardware.memtrack@1.0.vendor
-
-PRODUCT_PACKAGES += \
-    disable_configstore
-
-PRODUCT_PACKAGES += \
-    libfmq.vendor
+    Snap
 
 # DTB
 PRODUCT_COPY_FILES += \
     $(CHOPIN_PREBUILT)/base/dtb.img:dtb.img
-
-# DRM
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl:64 \
-    android.hardware.drm@1.0-service-lazy \
-    android.hardware.drm@1.4-service.clearkey
-
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0.vendor \
-    android.hardware.drm@1.1.vendor \
-    android.hardware.drm@1.2.vendor \
-    android.hardware.drm@1.3.vendor \
-    android.hardware.drm@1.4.vendor
 
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -216,39 +120,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.fingerprint.xml
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-service \
-    android.hardware.gatekeeper@1.0-impl
-
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0.vendor
-
-# GNSS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@2.1.vendor \
-    android.hardware.gnss.visibility_control@1.0.vendor \
-    android.hardware.gnss.measurement_corrections@1.1.vendor
-
-# Heath hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-service \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-impl.recovery
-
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
-    android.hidl.manager@1.0 \
-    libhidltransport \
-    libhwbinder \
-    libhardware \
-    libhardware.recovery \
-    libhardware_legacy \
-    libhardware_legacy.recovery
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891
+    android.hidl.manager@1.0
 
 # IR
 PRODUCT_PACKAGES += \
@@ -265,40 +140,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl \
     $(LOCAL_PATH)/config/keylayout/mtk-kpd.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/mtk-kpd.kl
 
-# Additional target Libraries
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    libkeymaster4.vendor:64 \
-    libkeymaster4support.vendor:64 \
-    libkeymaster_portable.vendor:64 \
-    libkeymaster_messages.vendor:64 \
-    libsoft_attestation_cert.vendor:64 \
-    libpuresoftkeymasterdevice.vendor:64 \
-    android.hardware.keymaster@4.1-service
-
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1.vendor
-
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.chopin
-
-# Media Codec2 modules
-PRODUCT_PACKAGES += \
-    com.android.media.swcodec \
-    libsfplugin_ccodec
-
-# Minijail
-PRODUCT_PACKAGES += \
-    libavservices_minijail.vendor
-
-# Net
-PRODUCT_PACKAGES += \
-    libpcap.vendor
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -316,13 +160,16 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
+PRODUCT_PACKAGES += \
+    FrameworkResOverlayChopin \
+    WifiResOverlayChopin 
+
 # Overlays - override vendor ones
 PRODUCT_PACKAGES += \
     FrameworksResCommon \
     FrameworksResTarget \
     DevicesOverlay \
-    DevicesAndroidOverlay \
-    WifiResOverlayChopin
+    DevicesAndroidOverlay
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
@@ -342,41 +189,11 @@ PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
     init.recovery.mt6893.rc \
     init.recovery.usb.rc \
-    init.mt6891.rc 
+    init.mt6891.rc \
+    ueventd.mtk.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc
-
-# Radio
-PRODUCT_PACKAGES += \
-    android.hardware.radio.config@1.0.vendor \
-    android.hardware.radio.config@1.1.vendor \
-    android.hardware.radio.config@1.2.vendor
-
-# Ramdisk
-PRODUCT_PACKAGES += \
-    ueventd.mtk.rc
-
-# RCS
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    PresencePolling \
-    RcsService
-
-# RenderScript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
-# RIL
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full \
-    libprotobuf-cpp-full-vendorcompat \
-    libprotobuf-cpp-lite-vendorcompat
-
-# Sensors
-PRODUCT_PACKAGES += \
-    libsensorndkbridge \
-    android.frameworks.sensorservice@1.0
 
 # Screen density
 PRODUCT_AAPT_CONFIG := xxxhdpi
@@ -393,19 +210,6 @@ PRODUCT_PACKAGES += \
 # Properties
 include $(LOCAL_PATH)/config/prop/default.mk
 
-# Text classifier
-PRODUCT_PACKAGES += \
-    libtextclassifier_hash.vendor
-
-# Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0.vendor
-
-# TinyXML
-PRODUCT_PACKAGES += \
-    libtinyxml \
-    libtinyxml.vendor
-
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
@@ -417,7 +221,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-     android.hardware.vibrator-V1-ndk_platform.vendor
+     android.hardware.vibrator-V1-ndk_platform
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
