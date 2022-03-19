@@ -165,7 +165,8 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     FrameworkResOverlayChopin \
-    WifiResOverlayChopin 
+    WifiResOverlayChopin \
+    SystemUIOverlayChopin
 
 # Overlays - override vendor ones
 PRODUCT_PACKAGES += \
