@@ -67,7 +67,7 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-mtkimpl
 
 PRODUCT_PACKAGES_DEBUG += \
-    bootctl
+    bootctrl
 
 # Build MT-PL-Utils
 PRODUCT_PACKAGES += \
