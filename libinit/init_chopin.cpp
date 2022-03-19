@@ -74,7 +74,37 @@ void load_dalvik_properties() {
     property_override("dalvik.vm.heapminfree", "8m");
 }
 
+void load_chopin() {
+    property_override("ro.product.model", "M2104K10AC");
+    property_override("ro.product.marketname", "Redmi Note 10 Pro");
+    property_override("ro.product.brand", "Redmi");
+}
+
+void load_choping() {
+    property_override("ro.product.model", "21061110AG");
+    property_override("ro.product.marketname", "POCO X3 GT");
+    property_override("ro.product.brand", "POCO");
+}
+
+void load_chopinin() {
+    property_override("ro.product.model", "21041110AI");
+    property_override("ro.product.marketname", "Redmi Note 10 Pro");
+    property_override("ro.build.product", "chopinin");
+    property_override("ro.product.device", "chopinin");
+    property_override("ro.product.brand", "Redmi");
+}
+
 void vendor_load_properties() {
+  std::string region = android::base::GetProperty("ro.boot.hwc", "");
   load_dalvik_properties();
   property_override("ro.oem_unlock_supported", "0");
+  if (region.find("CN") != std::string::npos) {
+        load_chopin();
+    } else if (region.find("India") != std::string::npos) {
+        load_chopinin();
+    } else if (region.find("Global") != std::string::npos) {
+        load_choping();
+    } else {
+        LOG(ERROR) << __func__ << ": unexcepted region!";
+    }
 }
