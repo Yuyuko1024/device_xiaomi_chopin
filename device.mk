@@ -222,6 +222,7 @@ include $(LOCAL_PATH)/config/prop/default.mk
 
 # Update engine
 PRODUCT_PACKAGES += \
+    checkpoint_gc \
     update_engine \
     update_engine_sideload \
     update_verifier
