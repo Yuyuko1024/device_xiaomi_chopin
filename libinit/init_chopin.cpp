@@ -34,6 +34,7 @@
 #include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
+#include <sys/sysinfo.h>
 
 #include "property_service.h"
 #include "vendor_init.h"
@@ -51,6 +52,29 @@ void property_override(char const prop[], char const value[], bool add = true) {
     }
 }
 
+void load_dalvik_properties() {
+    struct sysinfo sys;
+
+    sysinfo(&sys);
+    if (sys.totalram < 6144ull * 1024 * 1024) {
+        // from - phone-xhdpi-6144-dalvik-heap.mk
+        property_override("dalvik.vm.heapstartsize", "16m");
+        property_override("dalvik.vm.heapgrowthlimit", "256m");
+        property_override("dalvik.vm.heapsize", "512m");
+        property_override("dalvik.vm.heapmaxfree", "32m");
+    } else {
+        // 8GB & 12GB RAM
+        property_override("dalvik.vm.heapstartsize", "32m");
+        property_override("dalvik.vm.heapgrowthlimit", "512m");
+        property_override("dalvik.vm.heapsize", "768m");
+        property_override("dalvik.vm.heapmaxfree", "64m");
+    }
+
+    property_override("dalvik.vm.heaptargetutilization", "0.5");
+    property_override("dalvik.vm.heapminfree", "8m");
+}
+
 void vendor_load_properties() {
+  load_dalvik_properties();
   property_override("ro.oem_unlock_supported", "0");
 }
