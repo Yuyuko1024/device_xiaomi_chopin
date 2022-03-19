@@ -16,6 +16,7 @@
 cc_library_static {
     name: "libinit_chopin",
     srcs: ["init_chopin.cpp"],
+    whole_static_libs: ["libbase"],
     recovery_available: true,
     include_dirs: [
         "system/core/base/include",
