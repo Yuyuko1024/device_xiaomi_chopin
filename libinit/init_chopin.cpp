@@ -104,7 +104,5 @@ void vendor_load_properties() {
         load_chopinin();
     } else if (region.find("Global") != std::string::npos) {
         load_choping();
-    } else {
-        LOG(ERROR) << __func__ << ": unexcepted region!";
     }
 }
