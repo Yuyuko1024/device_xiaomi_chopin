@@ -189,11 +189,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
 
-# Permissions
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/config/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml \
-    $(DEVICE_PATH)/config/permissions/privapp-mtk-carrierconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-mtk-carrierconfig.xml
-
 # RcsService
 PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager \
