@@ -231,6 +231,7 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Shims
 PRODUCT_PACKAGES += \
+    ImsServiceBase \
     libshim_vtservice
 
 # Properties

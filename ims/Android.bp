@@ -18,3 +18,9 @@ cc_library_shared {
     srcs: ["libshim_vtservice.cpp"],
 
 }
+
+java_library {
+    name: "ImsServiceBase",
+    installable: true,
+    srcs: ["ImsServiceBase.java"],
+}
