@@ -1,0 +1,10 @@
+[
+  {
+    "repository": "device_xiaomi_chopin-prebuilts",
+    "target_path": "device/xiaomi/chopin-prebuilts"
+  }
+  {
+     "repository": "vendor_xiaomi_chopin"
+     "target_path": "vendor/xiaomi/chopin"
+  }
+]
