@@ -21,6 +21,18 @@ lib64/libaptX_encoder.so
 -app/IFAAService/IFAAService.apk
 -app/SoterService/SoterService.apk
 
+# EngineerMode
+-app/YGPS/YGPS.apk
+-priv-app/EngineerMode/EngineerMode.apk
+lib/libem_audio_jni.so
+lib/libem_support_jni.so
+lib/libem_usb_jni.so
+lib/libem_wifi_jni.so
+lib64/libem_audio_jni.so
+lib64/libem_support_jni.so
+lib64/libem_usb_jni.so
+lib64/libem_wifi_jni.so
+
 # MTK-IMS
 bin/vtservice
 etc/init/init.vtservice.rc
