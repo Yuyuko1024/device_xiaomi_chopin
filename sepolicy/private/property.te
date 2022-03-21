@@ -1,3 +1,0 @@
-type perf_prop, property_type;
-type cabc_prop, property_type;
-type vendor_camera_prop, property_type;

@@ -1,27 +1,5 @@
+# Allow init to mount vendor overlay
+allow init vendor_overlay_file:dir mounton;
+
 # Allow init to mount vendor configs
 allow init vendor_configs_file:dir mounton;
-
-# Allow init to write touchpanel nodes
-allow init proc_tp:file rw_file_perms;
-
-# Allow init to change owner of /sys/module/ged
-allow init sysfs_ged:file { w_file_perms setattr };
-
-# Allow init to change owner of /proc/cpufreq
-allow init proc_cpufreq:file { w_file_perms setattr };
-
-# Allow init to set smart charging and USB
-allow init sysfs_battery_supply:file { setattr };
-
-# Define some denials from realme parts
-type sysfs_disp_hbm, sysfs_type, fs_type;
-type sysfs_graphics_ffl, sysfs_type, fs_type;
-
-# Allow init to write to LCM_CABC nodes
-allow init sysfs:file { read open write getattr setattr };
-
-# Allow init to write to Vibration strength node
-allow init sysfs_vibrator:file { read open write getattr setattr };
-
-# Allow init to write to sysfs_fod node
-allow init sysfs_fod:file { read open write getattr setattr };
