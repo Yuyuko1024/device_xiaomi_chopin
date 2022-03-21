@@ -197,12 +197,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
 
-# RcsService
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    RcsService \
-    PresencePolling
-
 # Rootdir
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
@@ -221,10 +215,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
-
-# Shims
-PRODUCT_PACKAGES += \
-    libshim_vtservice
 
 # Properties
 include $(LOCAL_PATH)/config/prop/default.mk
