@@ -46,8 +46,6 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    libaacwrapper \
     tinymix
 
 PRODUCT_COPY_FILES += \

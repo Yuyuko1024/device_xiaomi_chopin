@@ -7,12 +7,6 @@ etc/xcap-apns-conf.xml
 system_ext/lib/vendor.mediatek.hardware.audio@6.1.so
 system_ext/lib64/vendor.mediatek.hardware.audio@6.1.so
 
-# Bluetooth
-lib/libbluetooth.so
-lib64/libbluetooth.so
-system_ext/lib/vendor.mediatek.hardware.bluetooth.audio@2.1.so
-system_ext/lib64/vendor.mediatek.hardware.bluetooth.audio@2.1.so
-
 # Bluetooth (AptX)
 lib64/libaptXHD_encoder.so
 lib64/libaptX_encoder.so
