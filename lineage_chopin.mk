@@ -30,7 +30,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 PRODUCT_DEVICE := chopin
 PRODUCT_NAME := lineage_chopin
 PRODUCT_BRAND := Redmi
-PRODUCT_MODEL := Redmi Note 10 Pro
+PRODUCT_MODEL := M2104K10AC
 PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
