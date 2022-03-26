@@ -215,6 +215,8 @@ PRODUCT_PACKAGES += \
     init.recovery.mt6893.rc \
     init.recovery.usb.rc \
     init.mt6891.rc \
+    init.mtkincalladj.rc \
+    setup_MTK_In-Call_volume_adjust.sh \
     ueventd.mtk.rc
 
 PRODUCT_COPY_FILES += \

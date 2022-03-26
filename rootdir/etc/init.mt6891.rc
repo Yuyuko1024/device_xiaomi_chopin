@@ -1,3 +1,5 @@
+import /system/etc/init/hw/init.mtkincalladj.rc
+
 on init
     # Disable vendor overlay
     mount none /vendor/lost+found /vendor/overlay bind
