@@ -21,4 +21,7 @@ PRODUCT_MAKEFILES := \
 COMMON_LUNCH_CHOICES := \
     lineage_chopin-user \
     lineage_chopin-userdebug \
-    lineage_chopin-eng
+    lineage_chopin-eng \
+    lineage_choping-user \
+    lineage_choping-userdebug \
+    lineage_choping-eng
