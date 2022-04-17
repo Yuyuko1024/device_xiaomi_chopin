@@ -444,4 +444,13 @@
          For devices with sensors on the back of the device, this corresponds to the location on the
          screen directly in front of the sensor.  -->
    <dimen name="physical_fingerprint_sensor_center_screen_location_y">1100px</dimen>
+
+   <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
+         when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
+         where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
+         and Strength as defined in Authenticators.java -->
+    <string-array name="config_biometric_sensors">
+        <item>0:2:15</item>
+    </string-array>
+    
 </resources>
