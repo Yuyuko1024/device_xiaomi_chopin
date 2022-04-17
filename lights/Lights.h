@@ -37,6 +37,7 @@ class Lights : public BnLights {
   private:
     void setLightBacklight(int id, const HwLightState& state);
     void setLightNotification(int id, const HwLightState& state);
+    void applyNotificationState(const HwLightState& state);
 
     uint32_t max_screen_brightness_;
     uint32_t max_led_brightness_;

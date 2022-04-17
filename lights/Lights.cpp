@@ -30,6 +30,7 @@ namespace {
 #define STRINGIFY(x) STRINGIFY_INNER(x)
 
 #define LEDS(x) PPCAT(/sys/class/leds, x)
+#define WHITE_ATTR(x) STRINGIFY(PPCAT(LEDS(red), x))
 #define LCD_ATTR(x) STRINGIFY(PPCAT(LEDS(lcd-backlight), x))
 /* clang-format on */
 
@@ -67,6 +68,10 @@ inline uint32_t RgbaToBrightness(uint32_t color, uint32_t max_brightness) {
     return RgbaToBrightness(color) * max_brightness / 0xFF;
 }
 
+inline bool IsLit(uint32_t color) {
+    return color & 0x00ffffff;
+}
+
 }  // anonymous namespace
 
 namespace aidl {
@@ -76,6 +81,9 @@ namespace light {
 
 Lights::Lights() {
     std::map<int, std::function<void(int id, const HwLightState&)>> lights_{
+            {(int)LightType::NOTIFICATIONS,
+             [this](auto&&... args) { setLightNotification(args...); }},
+            {(int)LightType::BATTERY, [this](auto&&... args) { setLightNotification(args...); }},
             {(int)LightType::BACKLIGHT, [this](auto&&... args) { setLightBacklight(args...); }}};
 
     std::vector<HwLight> availableLights;
@@ -95,6 +103,13 @@ Lights::Lights() {
     } else {
         max_screen_brightness_ = kDefaultMaxLedBrightness;
         LOG(ERROR) << "Failed to read max screen brightness, fallback to " << kDefaultMaxLedBrightness;
+    }
+
+    if (ReadFileToString(WHITE_ATTR(max_brightness), &buf)) {
+        max_led_brightness_ = std::stoi(buf);
+    } else {
+        max_led_brightness_ = kDefaultMaxLedBrightness;
+        LOG(ERROR) << "Failed to read max LED brightness, fallback to " << kDefaultMaxLedBrightness;
     }
 }
 
@@ -120,6 +135,37 @@ ndk::ScopedAStatus Lights::getLights(std::vector<HwLight>* lights) {
 void Lights::setLightBacklight(int /* id */, const HwLightState& state) {
     int brightness = RgbaToBrightness(state.color, max_screen_brightness_);
     WriteToFile(LCD_ATTR(brightness), brightness);
+}
+
+void Lights::setLightNotification(int id, const HwLightState& state) {
+    bool found = false;
+    for (auto&& [cur_id, cur_state] : notif_states_) {
+        if (cur_id == id) {
+            cur_state = state;
+        }
+
+        // Fallback to battery light
+        if (!found && (cur_id == (int)LightType::BATTERY || IsLit(cur_state.color))) {
+            found = true;
+            LOG(DEBUG) << __func__ << ": id=" << id;
+            applyNotificationState(cur_state);
+        }
+    }
+}
+
+void Lights::applyNotificationState(const HwLightState& state) {
+    std::string blink_pattern = "1 ";
+    int brightness = RgbaToBrightness(state.color, max_led_brightness_);
+
+    if (state.flashMode == FlashMode::TIMED && state.flashOnMs > 0 && state.flashOffMs > 0) {
+        blink_pattern += std::to_string(static_cast<uint32_t>(state.flashOnMs / 1000));
+        blink_pattern += " 1 ";
+        blink_pattern += std::to_string(static_cast<uint32_t>(state.flashOffMs / 1000));
+        WriteStringToFile(blink_pattern, WHITE_ATTR(led_time));
+        WriteToFile(WHITE_ATTR(blink), 1);
+    } else {
+        WriteToFile(WHITE_ATTR(brightness), brightness);
+    }
 }
 
 }  // namespace light
