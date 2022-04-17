@@ -16,12 +16,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_chopin.mk
+    $(LOCAL_DIR)/aosp_chopin.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_chopin-user \
-    lineage_chopin-userdebug \
-    lineage_chopin-eng \
-    lineage_choping-user \
-    lineage_choping-userdebug \
-    lineage_choping-eng
+    aosp_chopin-user \
+    aosp_chopin-userdebug \
+    aosp_chopin-eng
