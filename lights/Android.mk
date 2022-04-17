@@ -5,7 +5,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := android.hardware.lights-service.chopin
 LOCAL_MODULE_TAGS  := optional
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/bin
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_STEM := android.hardware.lights-service.mediatek
 
