@@ -13,7 +13,6 @@ lib64/libaptX_encoder.so
 
 # AGPS
 -app/LocationEM2/LocationEM2.apk
--app/MetokNLP/MetokNLP.apk
 -priv-app/LPPeService/LPPeService.apk
 
 # EngineerMode
