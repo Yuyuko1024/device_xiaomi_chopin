@@ -84,6 +84,10 @@ PRODUCT_PACKAGES += \
     mtk_plpath_utils \
     mtk_plpath_utils.recovery
 
+# GCamGo Prebuilts
+PRODUCT_PACKAGES += \
+    GCamGoPrebuilts
+
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd \
