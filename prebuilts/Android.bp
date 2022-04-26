@@ -1,0 +1,9 @@
+android_app_import {
+	name: "AMapLocationProvider",
+	owner: "amap",
+	apk: "AMapLocationProvider/AMapLocationProvider.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+}

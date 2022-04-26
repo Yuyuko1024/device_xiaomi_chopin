@@ -16,9 +16,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_chopin.mk
+    $(LOCAL_DIR)/exthm_chopin.mk
 
 COMMON_LUNCH_CHOICES := \
-    aosp_chopin-user \
-    aosp_chopin-userdebug \
-    aosp_chopin-eng
+    exthm_chopin-user \
+    exthm_chopin-userdebug \
+    exthm_chopin-eng

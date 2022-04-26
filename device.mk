@@ -148,6 +148,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.chopin
 
+# Location Provider
+PRODUCT_PACKAGES += \
+    AMapLocationProvider
+
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
