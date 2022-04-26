@@ -11,6 +11,11 @@ lib64/libaptX_encoder.so
 -app/IFAAService/IFAAService.apk
 -app/SoterService/SoterService.apk
 
+# AGPS
+-app/LocationEM2/LocationEM2.apk
+-app/MetokNLP/MetokNLP.apk
+-priv-app/LPPeService/LPPeService.apk
+
 # MTK-IMS
 bin/vtservice
 etc/init/init.vtservice.rc
