@@ -49,6 +49,9 @@ TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 # Audio
+PRODUCT_PACKAGES += \
+    tinymix
+
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/a2dp_in_audio_policy_configuration.xml \
@@ -170,15 +173,14 @@ PRODUCT_PACKAGES += \
     DevicesOverlay \
     DevicesAndroidOverlay
 
-#PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-#    $(LOCAL_PATH)/overlay/packages/apps/CarrierConfig
-
 # Rootdir
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
     init.recovery.mt6893.rc \
     init.recovery.usb.rc \
-    init.mt6891.rc
+    init.mt6891.rc \
+    setup_MTK_In-Call_volume_adjust.sh \
+    init.mtkincalladj.rc
 
 # Screen density
 PRODUCT_AAPT_CONFIG := xxxhdpi
