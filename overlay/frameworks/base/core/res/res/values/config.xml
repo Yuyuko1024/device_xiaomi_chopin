@@ -456,32 +456,11 @@
         <item>0:2:15</item>
     </string-array>
 
-    <!-- Whether to enable network location overlay which allows network location provider to be
-         replaced by an app at run-time. When disabled, only the
-         config_networkLocationProviderPackageName package will be searched for network location
-         provider, otherwise any system package is eligible. Anyone who wants to disable the overlay
-         mechanism can set it to false. -->
-    <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
-
-    <!-- Package name providing network location support. Used only when
-         config_enableNetworkLocationOverlay is false. -->
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.amap.android.location</string>
-
-    <!-- Whether to enable geocoder overlay which allows geocoder to be replaced
-         by an app at run-time. When disabled, only the
-         config_geocoderProviderPackageName package will be searched for
-         geocoder, otherwise any system package is eligible. Anyone who wants to
-         disable the overlay mechanism can set it to false.
-         -->
-    <bool name="config_enableGeocoderOverlay" translatable="false">false</bool>
-
-    <!-- Package name providing geocoder API support. Used only when
-         config_enableGeocoderOverlay is false. -->
-    <string name="config_geocoderProviderPackageName" translatable="false">com.amap.android.location</string>
-
     <!-- Package name(s) containing location provider support. These packages will be auto-granted
          several permissions by the system, and should be system packages. -->
     <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The Google provider -->
+        <item>com.google.android.gms</item>
         <!-- The standard AOSP fused location provider -->
         <item>com.android.location.fused</item>
         <!-- AMap Location Provider -->
