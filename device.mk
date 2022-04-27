@@ -153,8 +153,13 @@ PRODUCT_PACKAGES += \
     android.hardware.lights-service.chopin
 
 # Location Provider
+ifdef ($(USE_CN_AGPS),true)
 PRODUCT_PACKAGES += \
     AMapLocationProvider
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/gps/gps_debug.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps_debug.conf
+endif
 
 # NFC
 PRODUCT_PACKAGES += \
