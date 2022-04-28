@@ -1,42 +1,15 @@
-# end build properties
 #
 # from device/xiaomi/chopin/special_ro.prop
 #
 # For special ro override property
 
-# White Point Calibration
-ro.vendor.whitepoint_calibration_enable=false
-#Property for display feature histogram
-ro.vendor.histogram.enable=false
-# support unlimited color temperature adjust
-ro.colorpick_adjust=true
-ro.all_modes.colorpick_adjust=true
-# displayfeature use poll to monitor backlight brightness
-
 #support dual wifi feature
 ro.vendor.net.enable_dual_wifi=1
-
-#Property for NewGamePQ
-ro.vendor.gcp.enable=true
 
 # prop for cabc
 ro.vendor.cabc.enable=true
 
-#for CTS fps
-ro.vendor.display.default_fps=60
-
-#property for fps switch mode type
-ro.vendor.fps.switch.default=true
-
-# Thermal uses thermal_limit_refresh_rate setting to limit refresh rate
-ro.vendor.fps.switch.thermal=true
-
-# prop for software 12bit bl
-ro.vendor.soft_backlight.enable=false
-
-# prop for ai pq
-ro.vendor.video.style.by.layer.support=true
-
+# RIL
 # 5g capability(0: not support 1:nsa 2:sa 3: 1+2)
 ro.vendor.radio.5g=3
 
@@ -44,14 +17,11 @@ ro.vendor.radio.5g=3
 #value: 0000 0010
 ro.vendor.radio.features_common=2
 
-# enable wifi passpoint r1
-ro.vendor.net.enable_passpoint_r1=1
+vendor.rild.libpath=mtk-ril.so
+vendor.rild.libargs=-d /dev/ttyC0
 
 # SLA
 ro.vendor.net.enable_sla=1
-
-# prop for app copy during installation
-ro.miui.pm.install.buffer.size=49152
 
 # VRR configs
 ro.surface_flinger.set_touch_timer_ms=5000
@@ -61,52 +31,16 @@ ro.vendor.display.idle_fps=50
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.vendor.smart_dfps.enable=true
 
-# persist.lm.em.enabled=1
-persist.miui.extm.enable=1
-
-#
-# from device/xiaomi/mt6891_common/system.prop
-#
-#
-# system.prop for generic sdk
-#
-
-vendor.rild.libpath=mtk-ril.so
-vendor.rild.libargs=-d /dev/ttyC0
-
-
-# MTK, Infinity, 20090720 {
+# WiFi
 wifi.interface=wlan0
-# MTK, Infinity, 20090720 }
-
-# MTK, mtk03034, 20101210 {
 ro.mediatek.wlan.wsc=1
-# MTK, mtk03034 20101210}
-# MTK, mtk03034, 20110318 {
 ro.mediatek.wlan.p2p=1
-# MTK, mtk03034 20110318}
-
-# MTK, mtk03034, 20101213 {
 mediatek.wlan.ctia=0
-# MTK, mtk03034 20101213}
-
-
-#
 wifi.tethering.interface=ap0
-#
-
-ro.opengles.version=196610
-#ro.kernel.qemu=1
-#ro.kernel.qemu.gles=0
-
 wifi.direct.interface=p2p0
-#dalvik.vm.heapgrowthlimit=256m
-#dalvik.vm.heapsize=512m
 
-# USB MTP WHQL
+# USB MTP
 ro.sys.usb.mtp.whql.enable=0
-
-
 ro.sys.usb.storage.type=mtp
 
 # USB BICR function
@@ -119,20 +53,12 @@ ro.sys.usb.charging.only=yes
 ro.camera.sound.forced=0
 ro.audio.silent=0
 
-ro.zygote.preload.enable=0
-
-# temporary enables NAV bar (soft keys)
-qemu.hw.mainkeys=0
-
+# Kernel
 ro.kernel.zio=38,108,105,16
-#ro.kernel.qemu=1
-#ro.kernel.qemu.gles=0
-#ro.boot.selinux=disable
 
-# Disable dirty region for Mali
-#debug.hwui.render_dirty_regions=false
-
+# Display
 ro.sf.lcd_density=440
+sys.displayfeature_hidl=true
 
 # performance
 ro.mtk_perf_simple_start_win=1
@@ -147,14 +73,7 @@ pm.dexopt.aggressive_dex2oat.enable=false
 
 #sysprop for thermal
 vendor.sys.thermal.data.path=/data/vendor/thermal/
-# end of device/xiaomi/mt6891_common/system.prop
-#
-# from device/xiaomi/chopin/special_rw.prop
-#
-# For special rw override property
 
-#system property for displayfeature hidl
-sys.displayfeature_hidl=true
 # displayfeature and displayfeatureservice use it to debug pq effect
 vendor.displayfeature.entry.enable=true
 
@@ -167,56 +86,9 @@ persist.vendor.dc_backlight.enable=false
 #property for display fps switch
 persist.vendor.power.dfps.level=0
 
-# system property for support cool_mode
-persist.vendor.cool.mode=true
-
 #support night charge property
 persist.vendor.night.charge=true
-
-persist.vendor.video.dfps=true
-persist.vendor.video.dfps.level=0
 
 #For Test Factory Whether Calibrated
 #ACC/GYRO/ALS/PS/ALS_DARK/LUX_B/SAR/SAR_SECONDARY/...MAX_NUM=15
 persist.vendor.sensor.cali_sensor=111001100000000
-
-#enable sar feature
-persist.vendor.radio.dynamic_sar=1
-
-#modem crash dump collect
-persist.vendor.mdlog.need_dump=1
-persist.sys.mdlog_dumpback=2
-
-#
-# ADDITIONAL_BUILD_PROPERTIES
-#
-ro.mi.development=false
-ro.rom.zone=1
-ro.fota.oem=Xiaomi
-ro.vendor.build.software.version=Android11_125
-ro.config.media_vol_default=10
-persist.vm.stackdump.threshold=0
-ro.malloc.impl=jemalloc
-persist.sys.slab.threshold=256000,358400,460800,665600,819200
-persist.binder.check.enable=true
-persist.binder.check.size=200
-external_storage.cross_user.enabled=1
-ro.sf.lcd_density=440
-ro.treble.enabled=true
-net.bt.name=Android
-persist.sys.mitalk.enable=true
-ro.config.ringtone=Ring_Synth_04.ogg
-ro.config.notification_sound=pixiedust.ogg
-ro.config.alarm_alert=Alarm_Classic.ogg
-ro.config.sms_received_sound=FadeIn.ogg
-ro.config.sms_delivered_sound=MessageComplete.ogg
-ro.com.android.mobiledata=false
-ro.product.manufacturer=Xiaomi
-ro.config.elder-ringtone=Angel.mp3
-keyguard.no_require_sim=true
-ro.com.android.dataroaming=false
-persist.enable_task_snapshots=false
-persist.sys.watchdog_enhanced=true
-persist.sys.oom_crash_on_watchdog=true
-dalvik.vm.dexopt.secondary=true
-ro.iorapd.enable=false
