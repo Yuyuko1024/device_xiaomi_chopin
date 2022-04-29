@@ -47,7 +47,7 @@ AB_OTA_PARTITIONS += \
     vendor
 
 # Assertation
-TARGET_OTA_ASSERT_DEVICE := chopin
+TARGET_OTA_ASSERT_DEVICE := chopin,choping
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
@@ -103,9 +103,15 @@ BOARD_RAMDISK_OFFSET := 0x11088000
 
 # Kernel prebuilt option
 TARGET_FORCE_PREBUILT_KERNEL := true
+ifeq ($(IS_GLOBAL),true)
+TARGET_PREBUILT_KERNEL := $(CHOPIN_PREBUILT)/base/Global/Image.gz
+TARGET_PREBUILT_DTB := $(CHOPIN_PREBUILT)/base/Global/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(CHOPIN_PREBUILT)/base/Global/dtbo.img
+else
 TARGET_PREBUILT_KERNEL := $(CHOPIN_PREBUILT)/base/China/Image.gz
 TARGET_PREBUILT_DTB := $(CHOPIN_PREBUILT)/base/China/dtb.img
 BOARD_PREBUILT_DTBOIMAGE := $(CHOPIN_PREBUILT)/base/China/dtbo.img
+endif
 
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_BOOTIMG_HEADER_VERSION := 2
@@ -148,8 +154,13 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
+ifeq ($(IS_GLOBAL),true)
+BOARD_PREBUILT_VENDORIMAGE := $(CHOPIN_PREBUILT)/vendor/Global/vendor.img
+BOARD_PREBUILT_ODMIMAGE := $(CHOPIN_PREBUILT)/base/Global/odm.img
+else
 BOARD_PREBUILT_VENDORIMAGE := $(CHOPIN_PREBUILT)/vendor/China/vendor.img
 BOARD_PREBUILT_ODMIMAGE := $(CHOPIN_PREBUILT)/base/China/odm.img
+endif
 
 # Partitions (Dynamic)
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false

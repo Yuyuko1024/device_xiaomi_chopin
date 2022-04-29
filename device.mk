@@ -139,8 +139,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
 
 # Copy the kernel dtb from the prebuilts directory.
+ifeq ($(IS_GLOBAL),true)
+PRODUCT_COPY_FILES += \
+    $(CHOPIN_PREBUILT)/base/Global/dtb.img:dtb.img
+else
 PRODUCT_COPY_FILES += \
     $(CHOPIN_PREBUILT)/base/China/dtb.img:dtb.img
+endif
 
 # Keylayout
 PRODUCT_COPY_FILES += \
