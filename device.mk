@@ -153,7 +153,7 @@ PRODUCT_PACKAGES += \
     android.hardware.lights-service.chopin
 
 # Location Provider
-ifdef ($(USE_CN_AGPS),true)
+ifeq ($(USE_CN_AGPS),true)
 PRODUCT_PACKAGES += \
     AMapLocationProvider
 
