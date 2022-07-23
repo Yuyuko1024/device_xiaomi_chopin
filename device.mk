@@ -157,6 +157,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/gps/gps_debug.conf:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/gps_debug.conf
 endif
 
+# MtkInCallService
+PRODUCT_PACKAGES += \
+    MtkInCallService
+
 # NFC
 PRODUCT_PACKAGES += \
     NfcNci \
