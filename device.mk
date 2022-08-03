@@ -40,7 +40,7 @@ PRODUCT_BUILD_SUPER_PARTITION := false
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 
 # VNDK
-PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := 30
 PRODUCT_TARGET_VNDK_VERSION := 31
 PRODUCT_EXTRA_VNDK_VERSIONS := 31
 
@@ -49,9 +49,6 @@ TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 # Audio
-PRODUCT_PACKAGES += \
-    tinymix
-
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/a2dp_in_audio_policy_configuration.xml \
@@ -174,21 +171,12 @@ PRODUCT_PACKAGES += \
     SystemUIOverlayChopin \
     TelephonyOverlayChopin
 
-# Overlays - override vendor ones
-PRODUCT_PACKAGES += \
-    FrameworksResCommon \
-    FrameworksResTarget \
-    DevicesOverlay \
-    DevicesAndroidOverlay
-
 # Rootdir
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
     init.recovery.mt6893.rc \
     init.recovery.usb.rc \
-    init.mt6891.rc \
-    setup_MTK_In-Call_volume_adjust.sh \
-    init.mtkincalladj.rc
+    init.mt6891.rc
 
 # Screen density
 PRODUCT_AAPT_CONFIG := xxxhdpi

@@ -1,3 +1,7 @@
+on init
+    mount none /vendor/lost+found /vendor/overlay bind
+    setprop sys.usb.ffs.aio_compat 1
+
 on post-fs
     mount none /system/bin/hw/android.hardware.lights-service.mediatek /vendor/bin/hw/android.hardware.lights-service.mediatek bind
 
@@ -10,3 +14,7 @@ on boot
     chown system system /sys/class/leds/red/led_time
     chmod 0664 /sys/class/leds/red/max_brightness
     chown system system /sys/class/leds/red/max_brightness
+
+# Disable AOSP RIL if MTK RIL is up
+on property:vendor.ril.mtk=1
+    stop vendor.ril-daemon
