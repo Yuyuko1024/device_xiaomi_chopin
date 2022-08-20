@@ -124,7 +124,7 @@
     <scenario powerhint="MTKPOWER_HINT_MULTI_DISPLAY_WITH_GPU_FPS_120">
         <data cmd="PERF_RES_FPS_FBT_BHR_OPP" param1="15"></data>
     </scenario>
-    <scenario powerhint="MTKPOWER_HINT_UX_SCROLLING">
+    <scenario powerhint="INTERACTION">
         <data cmd="PERF_RES_CPUFREQ_MIN_CLUSTER_0" param1=" 1075000"></data>
         <data cmd="PERF_RES_CPUFREQ_MIN_CLUSTER_1" param1=" 1162000"></data>
         <data cmd="PERF_RES_CPUFREQ_MIN_CLUSTER_2" param1=" 1108000"></data>
