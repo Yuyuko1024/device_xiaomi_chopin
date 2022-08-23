@@ -11,3 +11,6 @@ on boot
 
     chmod 0664 /sys/class/leds/lcd-backlight/max_brightness
     chown system system /sys/class/leds/lcd-backlight/max_brightness
+
+on property:persist.sys.MT6891.dt2w=*
+    exec /system/bin/xiaomi-touch 14 ${persist.sys.MT6891.dt2w}

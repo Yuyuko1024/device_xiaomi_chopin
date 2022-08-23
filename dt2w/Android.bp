@@ -30,7 +30,8 @@ android_app {
     },
 
     required: [
-        "privapp-permissions_co.potatoproject.dt2w.MT6891"
+        "privapp-permissions_co.potatoproject.dt2w.MT6891",
+        "xiaomi-touch"
     ]
 }
 
@@ -39,4 +40,11 @@ prebuilt_etc {
     sub_dir: "permissions",
     src: "privapp-permissions_co.potatoproject.dt2w.MT6891.xml",
     filename_from_src: true,
+}
+
+cc_binary {
+	name: "xiaomi-touch",
+	srcs: [
+		"xiaomi-touch.cpp",
+	],
 }
