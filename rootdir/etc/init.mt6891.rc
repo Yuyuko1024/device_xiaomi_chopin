@@ -18,3 +18,6 @@ on boot
 # Disable AOSP RIL if MTK RIL is up
 on property:vendor.ril.mtk=1
     stop vendor.ril-daemon
+
+on property:persist.sys.MT6891.dt2w=*
+    exec /system/bin/xiaomi-touch 14 ${persist.sys.MT6891.dt2w}
