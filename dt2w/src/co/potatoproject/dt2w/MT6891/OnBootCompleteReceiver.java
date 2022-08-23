@@ -1,4 +1,4 @@
-package co.potatoproject.dt2w.MT6895;
+package co.potatoproject.dt2w.MT6891;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
