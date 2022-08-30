@@ -171,6 +171,10 @@ PRODUCT_PACKAGES += \
     SystemUIOverlayChopin \
     TelephonyOverlayChopin
 
+# Power Perf
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/power/powerscntbl.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/powerscntbl.xml
+
 # Rootdir
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
