@@ -7,3 +7,7 @@
 
 # VoLTE
 /system/bin/vtservice           u:object_r:vtservice_exec:s0
+
+# Xiaomi touch
+/system/bin/xiaomi-touch   u:object_r:xiaomi_touch_exec:s0
+/dev/xiaomi-touch          u:object_r:touchfeature_device:s0
