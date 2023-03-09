@@ -38,8 +38,6 @@ $(call inherit-product-if-exists, vendor/xiaomi/chopin/chopin-vendor.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
-TARGET_HAS_GENERIC_KERNEL_HEADERS := true
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
@@ -94,30 +92,17 @@ PRODUCT_PACKAGES += \
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
-
-PRODUCT_COPY_FILES += \
-    $(CHOPIN_PREBUILT)/recovery/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so:recovery/root/system/lib64/hw/android.hardware.fastboot@1.0-impl-mtk.so
+    android.hardware.fastboot@1.0-impl-mock
 
 # Exclude sensor from InputManager
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/sensor/excluded-input-devices.xml:system/etc/excluded-input-devices.xml
 
 # Fstab in ramdisk
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/first_stage_ramdisk/fstab.mt6893 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/first_stage_ramdisk/fstab.mt6891 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:$(TARGET_COPY_OUT_RAMDISK)/first_stage_ramdisk/fstab.emmc \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6893 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.mt6891 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.emmc \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6893 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6891 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:$(TARGET_COPY_OUT_RAMDISK)/fstab.emmc \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:recovery/root/first_stage_ramdisk/fstab.mt6891 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mt6891:recovery/root/first_stage_ramdisk/fstab.mt6893 \
-    $(LOCAL_PATH)/rootdir/etc/fstab.emmc:recovery/root/first_stage_ramdisk/fstab.emmc
+PRODUCT_PACKAGES += \
+    fstab.mt6891 \
+    fstab.ramdisk \
+    fstab.recovery
 
 # F2FS
 PRODUCT_PACKAGES += \
@@ -212,15 +197,11 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 # Rootdir
 PRODUCT_PACKAGES += \
     init.recovery.mt6891.rc \
-    init.recovery.mt6893.rc \
     init.recovery.usb.rc \
     init.mt6891.rc \
     init.mtkincalladj.rc \
     setup_MTK_In-Call_volume_adjust.sh \
     ueventd.mtk.rc
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.recovery.mt6891.rc:recovery/root/init.recovery.mt6891.rc
 
 # Screen density
 PRODUCT_AAPT_CONFIG := xxxhdpi

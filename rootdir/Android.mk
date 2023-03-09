@@ -25,14 +25,6 @@ LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := init.recovery.mt6893.rc
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := etc/init.recovery.mt6893.rc
-LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := init.mt6891.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
@@ -54,6 +46,33 @@ LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/init.recovery.usb.rc
 LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := fstab.mt6891
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/fstab.mt6891
+LOCAL_REQUIRED_MODULES := fstab.ramdisk
+LOCAL_MODULE_PATH  := $(TARGET_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := fstab.ramdisk
+LOCAL_MODULE_STEM  := fstab.mt6891
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/fstab.mt6891
+LOCAL_MODULE_PATH  := $(TARGET_RAMDISK_OUT)/first_stage_ramdisk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := fstab.recovery
+LOCAL_MODULE_STEM  := fstab.mt6891
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/fstab.mt6891
+LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)/first_stage_ramdisk
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
