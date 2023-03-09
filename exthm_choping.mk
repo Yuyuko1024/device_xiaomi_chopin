@@ -29,7 +29,7 @@ IS_GLOBAL := true
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := exthm_choping
-PRODUCT_BRAND := Xiaomi
+PRODUCT_BRAND := Redmi
 PRODUCT_DEVICE := choping
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_MODEL := 21061110AG
