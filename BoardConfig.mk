@@ -90,7 +90,6 @@ ifeq ($(HOST_OS),linux)
 endif
 
 # Display
-TARGET_USES_HWC2 := true
 TARGET_SCREEN_DENSITY := 440
 
 # Filesystem
@@ -166,8 +165,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
 ifneq ($(IS_GLOBAL),true)
   BOARD_PREBUILT_VENDORIMAGE := $(CHOPIN_PREBUILT)/vendor/China/vendor.img
   BOARD_PREBUILT_ODMIMAGE := $(CHOPIN_PREBUILT)/base/China/odm.img
