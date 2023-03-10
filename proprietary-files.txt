@@ -7,6 +7,10 @@ etc/xcap-apns-conf.xml
 system_ext/lib/vendor.mediatek.hardware.audio@6.1.so
 system_ext/lib64/vendor.mediatek.hardware.audio@6.1.so
 
+# AGPS
+-app/LocationEM2/LocationEM2.apk
+-priv-app/LPPeService/LPPeService.apk
+
 # Bluetooth (AptX)
 lib64/libaptXHD_encoder.so
 lib64/libaptX_encoder.so
