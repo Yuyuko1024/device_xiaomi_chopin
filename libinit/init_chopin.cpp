@@ -89,6 +89,8 @@ void vendor_load_properties()
     property_override("ro.product.vendor.device", board);
     property_override("ro.product.vendor.name", board);
 
+    property_override("ro.oem_unlock_supported", "0");
+
     if (board == "chopin") {
         model = "M2104K10AC";
         marketname = "Redmi Note 10 Pro";
