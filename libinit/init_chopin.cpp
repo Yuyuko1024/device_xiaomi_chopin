@@ -79,24 +79,35 @@ void vendor_load_properties()
 {
     load_dalvik_properties();
 
+    string brand = "Redmi";
     string model;
     string marketname;
 
+    string region = GetProperty("ro.boot.hwc", "");
     string board = GetProperty("ro.boot.product.hardware.sku", "");
+    string name = board;
 
     property_override("ro.product.board", board);
     property_override("ro.product.device", board);
     property_override("ro.product.vendor.device", board);
-    property_override("ro.product.vendor.name", board);
 
     property_override("ro.oem_unlock_supported", "0");
 
     if (board == "chopin") {
-        model = "M2104K10AC";
-        marketname = "Redmi Note 10 Pro";
+        if (region == "CN"){
+            model = "M2104K10AC";
+            marketname = "Redmi Note 10 Pro";
+        } else {
+            brand = "POCO";
+            model = "21061110AG";
+            marketname = "POCO X3 GT";
+            name = "chopin_global";
+        }
     } else if (board == "choping") {
+        brand = "POCO";
         model = "21061110AG";
         marketname = "POCO X3 GT";
+        name = "chopin_global";
     } else if (board == "chopinin") {
         model = "21041110AI";
         marketname = "Redmi Note 10 Pro";
@@ -105,7 +116,9 @@ void vendor_load_properties()
     // Override all partitions' props
     string prop_partitions[] = {"", "odm.", "vendor."};
     for (const string &prop : prop_partitions) {
+        property_override(string("ro.product.") + prop + string("brand"), brand);
         property_override(string("ro.product.") + prop + string("model"), model);
         property_override(string("ro.product.") + prop + string("marketname"), marketname);
+        property_override(string("ro.product.") + prop + string("name"), name);
     }
 }
