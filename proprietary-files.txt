@@ -6,6 +6,8 @@ etc/xcap-apns-conf.xml
 # Audio (Hardware)
 system_ext/lib/vendor.mediatek.hardware.audio@6.1.so
 system_ext/lib64/vendor.mediatek.hardware.audio@6.1.so
+system_ext/lib/libaudiotoolkit.so
+system_ext/lib64/libaudiotoolkit.so
 
 # AGPS
 -app/LocationEM2/LocationEM2.apk
